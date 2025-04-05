@@ -25,7 +25,12 @@ class Capuccino(Coffee):
     def cost(self):
         return 110
     def description(self):
-        return "Капучиео"
+        return "Капучино"
+class Raf(Coffee):
+    def cost(self):
+        return 90
+    def description(self):
+        return "Лавандовый раф"
 class CoffeeDecorator(Coffee):
     def __init__(self, coffee: Coffee):
         self._coffee = coffee
