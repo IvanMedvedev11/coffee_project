@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import json
 class Coffee(ABC):
     @abstractmethod
     def cost(self):
@@ -8,27 +9,37 @@ class Coffee(ABC):
         pass
 class Americano(Coffee):
     def cost(self):
-        return 120
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return data[0]['cost']
     def description(self):
         return "Американо"
 class Espresso(Coffee):
     def cost(self):
-        return 130
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return data[1]['cost']
     def description(self):
         return "Эспрессо"
 class Latte(Coffee):
     def cost(self):
-        return 100
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return data[2]['cost']
     def description(self):
         return "Латте"
 class Capuccino(Coffee):
     def cost(self):
-        return 110
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return data[3]['cost']
     def description(self):
         return "Капучино"
 class Raf(Coffee):
     def cost(self):
-        return 90
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return data[4]['cost']
     def description(self):
         return "Лавандовый раф"
 class CoffeeDecorator(Coffee):
@@ -40,17 +51,23 @@ class CoffeeDecorator(Coffee):
         return self._coffee.description()
 class WithMilk(CoffeeDecorator):
     def cost(self):
-        return self._coffee.cost() + 30
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return self._coffee.cost() + data[5]['cost']
     def description(self):
         return self._coffee.description() + ", с молоком"
 class WithSyrup(CoffeeDecorator):
     def cost(self):
-        return self._coffee.cost() + 40
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return self._coffee.cost() + data[6]['cost']
     def description(self):
         return self._coffee.description() + ", с сиропом"
 class WithSugar(CoffeeDecorator):
     def cost(self):
-        return self._coffee.cost() + 10
+        with open('cost.json', 'r') as file:
+            data = json.load(file)
+        return self._coffee.cost() + data[7]['cost']
     def description(self):
         return self._coffee.description() + ", с сахаром"
 if __name__ == "__main__":
